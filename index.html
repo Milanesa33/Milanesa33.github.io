@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Navidad 🎄</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 50%, #7e22ce 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            overflow-x: hidden;
+        }
+
+        .snowflake {
+            position: fixed;
+            top: -10px;
+            color: white;
+            font-size: 1em;
+            animation: fall linear infinite;
+            opacity: 0.8;
+            user-select: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh) rotate(360deg);
+            }
+        }
+
+        .card-container {
+            position: relative;
+            z-index: 10;
+            max-width: 800px;
+            width: 100%;
+            perspective: 1000px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            animation: fadeIn 1s ease-in;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 215, 0, 0.1), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .title {
+            font-size: 2.5em;
+            color: #c41e3a;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            animation: glow 2s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { text-shadow: 2px 2px 4px rgba(196, 30, 58, 0.3); }
+            50% { text-shadow: 2px 2px 20px rgba(196, 30, 58, 0.6); }
+        }
+
+        .tree {
+            text-align: center;
+            font-size: 3em;
+            margin: 20px 0;
+            animation: sway 3s ease-in-out infinite;
+        }
+
+        @keyframes sway {
+            0%, 100% { transform: rotate(-2deg); }
+            50% { transform: rotate(2deg); }
+        }
+
+        .character-img {
+            text-align: center;
+            margin: 30px 0;
+        }
+
+        .character-img img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .message {
+            color: #333;
+            line-height: 1.8;
+            margin: 25px 0;
+            text-align: center;
+            font-size: 1.1em;
+        }
+
+        .message p {
+            margin: 15px 0;
+            animation: slideIn 1s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateX(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .highlight {
+            color: #c41e3a;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .hearts {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+            animation: pulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        .wishes {
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .wishes h3 {
+            color: #d63031;
+            text-align: center;
+            margin-bottom: 15px;
+            font-size: 1.5em;
+        }
+
+        .wishes ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .wishes li {
+            padding: 10px;
+            margin: 8px 0;
+            background: white;
+            border-radius: 10px;
+            color: #2d3436;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            animation: slideIn 1s ease-out;
+        }
+
+        .wishes li::before {
+            content: '⭐ ';
+            margin-right: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            color: #636e72;
+            font-style: italic;
+        }
+
+        .decorations {
+            text-align: center;
+            font-size: 2em;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .card {
+                padding: 25px;
+            }
+
+            .title {
+                font-size: 2em;
+            }
+
+            .message {
+                font-size: 1em;
+            }
+
+            .tree {
+                font-size: 2em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 20px;
+                border-radius: 20px;
+            }
+
+            .title {
+                font-size: 1.5em;
+            }
+
+            .character-img img {
+                max-width: 250px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <div class="card">
+            <div class="header">
+                <h1 class="title">🎄 Feliz Navidad 🎄</h1>
+                <div class="tree">🎄✨</div>
+            </div>
+
+            <!-- REEMPLAZA LA SIGUIENTE LÍNEA CON TU IMAGEN -->
+            <!-- Cambia el src por la ruta de tu imagen, ejemplo: src="mi-imagen.jpg" -->
+            <div class="character-img">
+                <img src="img.jpg" alt="Para ti" />
+            </div>
+            <!-- FIN DE LA SECCIÓN DE IMAGEN -->
+
+            <div class="decorations">🎁 ⛄ 🌟 🔔 🎅</div>
+
+            <div class="message">
+                <p>En esta hermosa noche de Navidad, quiero que sepas algo muy importante:</p>
+                <p class="highlight">¡No estás sola! ❤️</p>
+                <p>Sé que últimamente las cosas han sido difíciles, que no te has sentido del todo bien, pero quiero recordarte que eres una persona <span class="highlight">increíblemente fuerte</span> y <span class="highlight">valiosa</span>.</p>
+                <p>Cada día que te levantas y sigues adelante, a pesar de todo, demuestra tu valentía y tu hermoso espíritu.</p>
+            </div>
+
+            <div class="hearts">💖 💝 💗</div>
+
+            <div class="wishes">
+                <h3>✨ Mis deseos para ti ✨</h3>
+                <ul>
+                    <li>Que esta Navidad te traiga paz y tranquilidad en tu corazón</li>
+                    <li>Que cada día te sientas un poquito mejor y nunca te falte salud</li>
+                    <li>Que sepas que hay personas que te aprecian y están contigo</li>
+                    <li>Que encuentres razones para sonreír, incluso en los días difíciles</li>
+                    <li>Que el Año Nuevo venga lleno de salud, alegría y nuevas oportunidades</li>
+                    <li>Que nunca dudes de lo especial que eres para quienes te conocemos</li>
+                </ul>
+            </div>
+
+            <div class="message">
+                <p>Recuerda que los días difíciles no duran para siempre. Cada amanecer es una nueva oportunidad, y tú tienes la fuerza necesaria para superar cualquier obstáculo.</p>
+                <p class="highlight">Eres más fuerte de lo que crees, más valiente de lo que pareces, y más querida de lo que imaginas. 🌟</p>
+                <p>Que esta Navidad te llene de esperanza, amor y la certeza de que cosas mejores están por venir.</p>
+            </div>
+
+            <div class="hearts">🎄 ❤️ 🎄</div>
+
+            <div class="footer">
+                <p><strong>Con todo mi cariño y apoyo siempre deseandote lo mejor,</strong></p>
+                <p>Alguien que se preocupa por ti 💝</p>
+                <p style="margin-top: 20px;">🌟 atte: Marquitos 🌟</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Crear copos de nieve
+        function createSnowflakes() {
+            const snowflakeCount = window.innerWidth < 768 ? 30 : 50;
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement('div');
+                snowflake.className = 'snowflake';
+                snowflake.textContent = '❄';
+                snowflake.style.left = Math.random() * 100 + '%';
+                snowflake.style.animationDuration = (Math.random() * 3 + 5) + 's';
+                snowflake.style.animationDelay = Math.random() * 5 + 's';
+                snowflake.style.fontSize = (Math.random() * 0.5 + 0.5) + 'em';
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        createSnowflakes();
+    </script>
+</body>
+</html>
